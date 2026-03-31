@@ -1,0 +1,30 @@
+<div class="min-h-screen bg-slate-950 text-slate-100">
+  @if (showNav()) {
+    <header class="p-4 border-b border-slate-800">
+      <h1 class="font-semibold text-lg">HabitPulse</h1>
+      <p class="text-xs text-slate-400">{{ auth.currentUser()?.email }}</p>
+    </header>
+  }
+
+  <main class="mx-auto max-w-3xl p-4 pb-24">
+    <router-outlet />
+  </main>
+
+  @if (showNav()) {
+    <nav class="fixed bottom-0 inset-x-0 border-t border-slate-800 bg-slate-900/95 backdrop-blur p-2">
+      <ul class="grid grid-cols-4 gap-2">
+        @for (item of navItems; track item.path) {
+          <li>
+            <a
+              [routerLink]="item.path"
+              routerLinkActive="btn-success"
+              class="btn btn-ghost btn-sm w-full"
+            >
+              {{ item.label }}
+            </a>
+          </li>
+        }
+      </ul>
+    </nav>
+  }
+</div>
